@@ -1,0 +1,27 @@
+<h1 class="h2 text-success">Your order has been received</h1>
+
+<h1 style="color: red;">Thanks you your purchase</h1>
+
+<p>Reference for your order is <span>{{orderId}}</span> </p>
+
+<div class="container">
+ 
+        <div class="row">
+          <div class="col-sm-4" *ngFor="let pdt of sucessorder">
+            <mdb-card class="z-depth-2">
+              <!--Card image-->
+              <mdb-card-img class="zoom overly" [src]="pdt.urlImage1" alt="Card image cap"></mdb-card-img>
+              <!--Card content-->
+              <mdb-card-body>
+                <mdb-card-title> <h4>{{pdt.title}}</h4> </mdb-card-title>
+                <mdb-card-text> <span>Size:</span>{{pdt.pdtdimensions}} </mdb-card-text>
+                <mdb-card-text> {{pdt.price | currency:"INR"}} </mdb-card-text>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </div>
+     <br> <br><br>
+      <button type="button" (click)="Products()"
+      mdbBtn type="button" gradient="blue"  mdbWavesEffect>Contunue Shopping</button>
+</div>
+

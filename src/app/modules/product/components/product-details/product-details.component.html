@@ -1,0 +1,200 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="container-fluid" *ngIf="!isLoading">
+    <div class="row" *ngFor="let pdt of Product" >
+     
+        <div class="col-lg-6"  >
+         <!--
+            <div id="carouselExampleCrossfade"
+            class="carousel slide carousel-fade"
+            data-mdb-ride="carousel" >
+            <div class="carousel-indicators">
+              <button 
+                type="button" 
+                data-mdb-target="#carouselExampleCrossfade"
+                data-mdb-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button *ngIf="pdt.urlImage2" 
+                type="button"
+                data-mdb-target="#carouselExampleCrossfade"
+                data-mdb-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button *ngIf="pdt.urlImage3" 
+                type="button"
+                data-mdb-target="#carouselExampleCrossfade"
+                data-mdb-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+              <button *ngIf="pdt.urlImage4" 
+                type="button"
+                data-mdb-target="#carouselExampleCrossfade"
+                data-mdb-slide-to="3"
+                aria-label="Slide 4"
+              ></button>
+              <button *ngIf="pdt.urlImage5" 
+                type="button"
+                data-mdb-target="#carouselExampleCrossfade"
+                data-mdb-slide-to="4"
+                aria-label="Slide 5"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active view overlay zoom" data-mdb-interval="3000">
+                <img 
+                  [src]="pdt.urlImage1"
+                  class="d-block w-100 "
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item view overlay zoom" *ngIf="pdt.urlImage2" data-mdb-interval="3000">
+                <img 
+                  [src]="pdt.urlImage2"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item view overlay zoom" *ngIf="pdt.urlImage3" data-mdb-interval="3000">
+                <img 
+                  [src]="pdt.urlImage3"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item view overlay zoom" *ngIf="pdt.urlImage4" data-mdb-interval="3000">
+                <img 
+                  [src]="pdt.urlImage4"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item view overlay zoom" *ngIf="pdt.urlImage5" data-mdb-interval="3000">
+                <img 
+                  [src]="pdt.urlImage5"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+             
+
+            </div>
+            <button *ngIf="pdt.urlImage2 && pdt.urlImage3 && pdt.urlImage4 && pdt.urlImage5"
+              class="carousel-control-prev"
+              type="button"
+              data-mdb-target="#carouselExampleCrossfade"
+              data-mdb-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button *ngIf="pdt.urlImage2 && pdt.urlImage3 && pdt.urlImage4 && pdt.urlImage5"
+              class="carousel-control-next"
+              type="button"
+              data-mdb-target="#carouselExampleCrossfade"
+              data-mdb-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>-->
+      
+          <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [isControls]="true" [interval]="3000">
+            <mdb-carousel-item *ngIf="pdt.urlImage1" class="zoom overly">
+              <img class="d-block w-100"  [src]="pdt.urlImage1" alt="First slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item *ngIf="pdt.urlImage2" class="zoom overly">
+              <img class="d-block w-100"  [src]="pdt.urlImage2" alt="Second slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item *ngIf="pdt.urlImage3" class="zoom overly">
+              <img class="d-block w-100"  [src]="pdt.urlImage3" alt="Third slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item *ngIf="pdt.urlImage4" class="zoom overly">
+              <img class="d-block w-100"  [src]="pdt.urlImage4" alt="Fouth slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item *ngIf="pdt.urlImage5" class="zoom overly">
+              <img class="d-block w-100"  [src]="pdt.urlImage5" alt="Fifth slide">
+            </mdb-carousel-item>
+          </mdb-carousel>
+
+
+        </div>
+        <div class="col-lg-6">
+            <div class="">
+              <p class="card-title h5 text-info" > {{pdt.title}} </p>
+                
+              
+              <div id="price" > 
+                <p> <span>Price:</span>  {{pdt.price | currency:'INR'}}</p>    
+              </div>
+
+              <p class="text-danger h6"> FREE Delivery</p>
+
+              <div id="size" > 
+                <p> <span>Size:</span> {{pdt.pdtdimensions}}</p>    
+             </div>
+
+             <div id="stock" *ngFor="let st of Stock"> 
+              <p class="text-success" *ngIf="!existProductStock(outofstock)"> {{pdt.stock}}</p> 
+              <p class="text-danger" *ngIf="existProductStock(outofstock)"> {{pdt.stock}}</p>    
+            </div>
+
+                <div id="description" > 
+                  <span>Description</span> <br><br>
+                  <p>{{pdt.description}}</p>
+                </div>
+                <div id="bullets" *ngIf="pdt.bullet1">
+                  <span>About This Item</span> <br><br>
+                  <p *ngIf="pdt.bullet1">{{pdt.bullet1}}</p> 
+                  <p *ngIf="pdt.bullet2">{{pdt.bullet2}}</p>
+                  <p *ngIf="pdt.bullet3">{{pdt.bullet3}}</p>
+                  <p *ngIf="pdt.bullet4">{{pdt.bullet4}}</p>
+                </div>
+            </div>
+        
+              <p *ngFor="let cartId of User">
+                <a class="btn btn-warning btn-rounded"  *ngIf="(pdt.stock === 'In Stock')"
+                (click)="AddToCart(pdt, cartId.id)"   data-mdb-ripple-color="dark">Add to Cart</a>
+              </p>
+                <a class="btn btn-warning btn-rounded"  *ngIf="!user && (pdt.stock === 'In Stock')"
+              (click)="NotUser()" data-mdb-ripple-color="dark">Add to Cart</a>
+
+              <a   mdbBtn type="button" gradient="aqua"   mdbWavesEffect   (click)="BuyNow()" 
+              *ngIf="(pdt.stock === 'In Stock')" data-mdb-ripple-color="dark">Buy Now</a>
+           <a   mdbBtn type="button" class="btn btn-danger btn-rounded"   mdbWavesEffect
+           *ngIf="(pdt.stock === 'Out Of Stock')" data-mdb-ripple-color="dark">Out Of Stock</a>
+
+              
+           
+            
+            
+            
+            
+        </div>
+    </div>
+</div>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This Product is Already in Cart!
+      </div>
+      <!--
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+      </div>-->
+    </div>
+  </div>
+</div>
+
+
+  

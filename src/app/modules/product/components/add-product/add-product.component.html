@@ -1,0 +1,163 @@
+
+<form [formGroup]="pdtAddForm" (ngSubmit)="AddProduct(pdtAddForm.value)">
+<mat-tab-group mat-align-tabs="center" >
+    <mat-tab label="Product Info">
+        <div class="pdtControls">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title"  required>
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Product Dimensions</mat-label>
+                <input matInput formControlName="pdtdimensions"   required>
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price" required>
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field  appearance="outline" >
+                <mat-label>Stock</mat-label>
+                <mat-select formControlName="stock" >
+                    <mat-option  *ngFor="let st of stock" [value]="st.key"> {{st.label}} </mat-option>
+                   
+                   
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Categorie</mat-label>
+                <mat-select formControlName="categorie" >
+                    <mat-option>Select Any</mat-option>
+                    <mat-option *ngFor="let categorie of categories" [value]="categorie.key"> {{categorie.label}} </mat-option>
+                   
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-tab>
+    <mat-tab label="Product Description">
+        <div class="pdtControls">
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description"  required>
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+
+            <!--Bullet Points-->
+            <mat-form-field appearance="outline">
+                <mat-label>Bullet Point 1</mat-label>
+                <input matInput formControlName="bullet1">                
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bullet Point 2</mat-label>
+                <input matInput formControlName="bullet2">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bullet Point 3</mat-label>
+                <input matInput formControlName="bullet3"> 
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bullet Point 4</mat-label>
+                <input matInput formControlName="bullet4">  
+            </mat-form-field>
+
+        </div>
+       
+        
+    </mat-tab>
+    <mat-tab label="Product Images">
+    
+            <div class="row" >
+                <h3 class="h2 text-primary text-center">Add Product Images</h3>
+                <div class="col-lg-4" > <!--Column 1-->
+                 
+                    <!--Image 1-->
+                 <div>
+                 <input hidden matInput formControlName="urlImage1"  [(ngModel)]="image1" required>    
+                 
+                    <input type="file"  (change)="uploadFile1($event)" required />
+                    <p>{{ uploadPercent1 | async }}</p>        
+                    <img *ngIf="image1" [src]="image1" style="width: 100px; height: 100px; "/>
+                 </div> 
+                 
+                 <div *ngFor="let product of AllProducts">
+                    <img *ngIf="!image1 " [src]="product.urlImage1" style="width: 100px; height: 100px; "/>
+                 </div>
+                 
+                  <!--Image 2-->
+                  <div>
+                    <input hidden matInput formControlName="urlImage2"  [(ngModel)]="image2" >    
+                    
+                       <input type="file" (change)="uploadFile2($event)" />
+                       <p>{{ uploadPercent2 | async }}</p>        
+                       <img  *ngIf="image2" [src]="image2" style="width: 100px; height: 100px; "/>
+                    </div> 
+                     
+                    <div *ngFor="let product of AllProducts">
+                        <img *ngIf="!image2" [src]="product.urlImage2" style="width: 100px; height: 100px; "/>
+                    </div>
+                    
+
+                </div>
+                <div class="col-lg-4"><!--Column 2-->
+
+                 <!--Image 3-->
+                 <div>
+                    <input hidden matInput formControlName="urlImage3"  [(ngModel)]="image3" >    
+                        
+                     <input type="file" (change)="uploadFile3($event)" />
+                    <p>{{ uploadPercent3 | async }}</p>        
+                    <img *ngIf="image3" [src]="image3" style="width: 100px; height: 100px; "/>
+                    </div> 
+                     
+                <div *ngFor="let product of AllProducts">
+                     <img *ngIf="!image3" [src]="product.urlImage3" style="width: 100px; height: 100px; "/>
+                </div>
+                <!--Image 4-->
+                <div>
+                    <input hidden matInput formControlName="urlImage4"  [(ngModel)]="image4" >    
+                    
+                       <input type="file" (change)="uploadFile4($event)" />
+                       <p>{{ uploadPercent4 | async }}</p>        
+                       <img *ngIf="image4" [src]="image4" style="width: 100px; height: 100px; "/>
+                    </div>
+                     
+                    <div *ngFor="let product of AllProducts">
+                        <img *ngIf="!image4" [src]="product.urlImage4" style="width: 100px; height: 100px; "/>
+                   </div>
+                     
+                </div>
+
+                <div class="col-lg-4"><!--Column 3-->
+                    <!--Image 5-->
+                 <div>
+                    <input hidden matInput formControlName="urlImage5"  [(ngModel)]="image5" >    
+                    
+                       <input type="file" (change)="uploadFile5($event)" />
+                       <p>{{ uploadPercent5 | async }}</p>        
+                       <img *ngIf="image5" [src]="image5" style="width: 100px; height: 100px; "/>
+                    </div> 
+                     
+                    <div *ngFor="let product of AllProducts">
+                        <img *ngIf="!image5" [src]="product.urlImage5" style="width: 100px; height: 100px; "/>
+                   </div>
+                    <!--Submit Button and Clear Button-->
+                    <div class="buttonrow">
+                        <button mdbBtn type="submit" color="deep-purple" mdbWavesEffect  [disabled]="!pdtAddForm.valid"  >Submit</button>
+                        <button mdbBtn type="button" color="amber" mdbWavesEffect (click)="onClear()">Clear</button>
+                    </div>
+
+                </div>
+            </div>
+
+        
+        
+    </mat-tab>
+    
+  </mat-tab-group>
+</form>
+

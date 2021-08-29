@@ -1,0 +1,23 @@
+table{
+    width: 100%;
+    
+}
+h1{
+    font-weight: bolder;
+    font-size: 2.5rem;
+    margin: 20px;
+}
+h2{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: blue;
+}
+span{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+mat-spinner{
+    margin: auto;
+}

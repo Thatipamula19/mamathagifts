@@ -1,0 +1,72 @@
+
+<form [formGroup]="userForm" (ngSubmit)="AddUser(userForm.value)">
+    <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile>
+        <div class="empControls">
+           
+            <mat-form-field appearance="outline">
+                <mat-label>FullName</mat-label>
+                <input matInput formControlName="fullname" required>
+                <mat-error *ngIf="fullname.errors?.required">This field is Required</mat-error>
+                <mat-error *ngIf="fullname.errors?.minlength">Min 6 Charecter are Required</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="email.errors?.required">This field is Required</mat-error>
+                <mat-error *ngIf="email.errors?.pattern">Enter Currect Email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput formControlName="mobile" required [class.is-invalid]="mobile.valid && mobile.touched" required>
+                <mat-error *ngIf="userForm.controls['mobile'].errors?.required">This field is Required</mat-error>
+                <mat-error *ngIf="userForm.controls['mobile'].errors?.minlength">Min 10 Numbers are Required</mat-error>
+                <mat-error *ngIf="userForm.controls['mobile'].errors?.maxlength">Max 10 Numbers are Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput formControlName="pinCode" required>
+                <mat-error *ngIf="pincode.errors?.required">This field is Required</mat-error>
+                <mat-error *ngIf="pincode.errors?.minlength">Min 6 Numbers are Required</mat-error>
+            </mat-form-field>
+
+    
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="empControls">
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Address Line 1</mat-label>
+                    <input matInput formControlName="addressline1" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Address Line 2</mat-label>
+                    <input matInput formControlName="addressline2">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>State</mat-label>
+                    <input matInput formControlName="state" required>
+                </mat-form-field>  
+                
+                
+                <div class="buttonrow">
+                    <button  mdbBtn type="submit" gradient="blue"  mdbWavesEffect
+                    data-mdb-ripple-color="dark">Submit</button>
+                    <a mdbBtn type="button" color="danger" mdbWavesEffect
+                    data-mdb-ripple-color="dark"   (click)="Cancle()" >Cancle</a>
+                </div>
+    
+        </div>
+    
+        
+    </mat-grid-tile>
+    </mat-grid-list>
+    
+    </form>
+    

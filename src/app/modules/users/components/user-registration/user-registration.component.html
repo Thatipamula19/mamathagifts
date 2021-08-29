@@ -1,0 +1,51 @@
+<form [formGroup]="regForm" (ngSubmit)="addUser(regForm.value)" >
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="empControls">
+                <mat-form-field appearance="outline">
+                    <mat-label>Fisrt Name</mat-label>
+                    <input matInput formControlName="firstname" required>
+                    <mat-error *ngIf="firstname.errors?.required">This field is Required</mat-error>
+                    <mat-error *ngIf="firstname.errors?.minlength">Min 4 Chareters are Required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastname" required>
+                    <mat-error *ngIf="lastname.errors?.required">This field is Required</mat-error>
+                    <mat-error *ngIf="lastname.errors?.minlength">Min 4 Chareters are Required</mat-error>
+                </mat-form-field>
+                <div class="myPadding">
+                    <mat-radio-group formControlName="gender" color="primary"  required>
+                        <mat-radio-button value="Male">Male</mat-radio-button>
+                        <mat-radio-button value="Female">Female</mat-radio-button>
+                        <mat-radio-button value="Others">Others</mat-radio-button>
+                        <mat-error *ngIf="gender.errors?.required">This field is Required</mat-error>
+                    </mat-radio-group>
+                </div>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="email.errors?.required">This field is Required</mat-error>
+                    <mat-error *ngIf="email.errors?.pattern">Enter Currect Email</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Mobile</mat-label>
+                    <input matInput formControlName="mobile" required>
+                    <mat-error *ngIf="mobile.errors?.required">This field is Required</mat-error>
+                    <mat-error *ngIf="mobile.errors?.minlength">Min 10 Numbers are Required</mat-error>
+                </mat-form-field>
+                <div>
+                    <button mdbBtn type="submit" color="indigo" mdbWavesEffect>Submit</button>
+                    <button mdbBtn type="submit" color="deep-orange" (click)="Cancle()" mdbWavesEffect>Cancle</button>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+</form>
+

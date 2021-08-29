@@ -1,0 +1,69 @@
+img{
+  width: 100%;
+  height: 450px;
+}
+.container-fluid{
+  margin-top: 50px;
+}
+
+#price{
+  margin-top: 50px;
+}
+#price span{
+
+  color: black ;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  
+}
+
+#size {
+  margin-top: 10px;
+}
+#size span{
+
+  color: darkblue;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+
+}
+
+#description{
+  margin-top: 40px;
+}
+#description p{
+
+  color: black;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: lighter;
+}
+#description span{
+  color: mediumvioletred;
+  font-size: 1.2rem;
+ font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  
+}
+
+#bullets{
+  margin-top: 50px;
+}
+#bullets span{
+  color:orangered;
+  font-size: 1.2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+#bullets p{
+  color: black;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: lighter;
+}
+mat-spinner{
+  margin: auto;
+}
+

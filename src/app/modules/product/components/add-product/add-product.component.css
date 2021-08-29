@@ -1,0 +1,13 @@
+.pdtControls{
+    width: 100%;
+    padding: 5%;
+}
+.pdtControls > * {
+    width: 75%;
+}
+.row{
+    margin-top: 50px;
+}
+.buttonrow button{
+    margin: 5px;
+}

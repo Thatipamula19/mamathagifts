@@ -1,0 +1,113 @@
+<div class="demo-button-container">
+    <button  mdbBtn type="button" color="cyan" mdbWavesEffect (click)="AddProduct()">
+      Add Product
+    </button>
+  </div>
+
+  
+
+  
+  <!--
+  <table mat-table [dataSource]="products" class="mat-elevation-z8 demo-table" matSort>
+    
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.title}}</td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.description}}</td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="categorie">
+      <th mat-header-cell *matHeaderCellDef>Categorie</th>
+      <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.categorie}}</td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="urlImage">
+      <th mat-header-cell *matHeaderCellDef>UrlImage</th>
+      <td mat-cell *matCellDef="let element" style="width: 15%;"><img [src]="element.urlImage1"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.price | currency:'INR'}}</td>
+      </ng-container>
+
+     
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef>Stock</th>
+      <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.stock}}</td>
+     
+    </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions </th>
+        <td mat-cell *matCellDef="let row" style="width: 15%;">
+                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="Edit(row.key)">
+                        <mat-icon aria-label="Edit" >edit</mat-icon>
+                      </button>
+                    <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="Delete(row)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+               </button>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </table>
+--> 
+
+<div class="container table-responsive z-depth-2">
+  <div class="row">
+    <table mdbTable #tableEl="mdbTable" [stickyHeader]="true" [hover]="true" >
+      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements"
+            [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+      <tr *ngFor="let el of elements; let i = index">
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+          style="width: 15%;" >{{el.title}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.categorie}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          <img [src]="el.urlImage1" />
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.price}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+        <p *ngIf="(el.stock === 'In Stock')" class="text-success">{{el.stock}}</p>
+        <p *ngIf="(el.stock === 'Out Of Stock')" class="text-danger">{{el.stock}}</p>
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="Edit(el.key)">Edit</button>
+          <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="Delete(el.key)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="5">
+          <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                [searchDataSource]="elements"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

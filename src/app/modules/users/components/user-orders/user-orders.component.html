@@ -1,0 +1,146 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="container" >
+    
+    <!-- Title Column 
+      <table mat-table [dataSource]="orderIds | dateSort:['dateCreated', 'des']" class="mat-elevation-z8 demo-table" >
+          
+          <ng-container matColumnDef="dateCreated">
+            <th mat-header-cell *matHeaderCellDef>Ordered Date</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.dateCreated | date}}</td>
+          </ng-container>
+       
+          
+          <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef>Order Id</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.key}} </td>
+            
+          </ng-container>
+      
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Order Status</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.status}}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="trackingid">
+            <th mat-header-cell *matHeaderCellDef>Tracking Id</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.trackingid}}</td>
+          </ng-container>
+    
+          <ng-container  matColumnDef="courier">
+            <th mat-header-cell *matHeaderCellDef>Courier</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{element.courier}}</td>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>See Details </th>
+            <td mat-cell *matCellDef="let row" style="width: 15%;">
+              <button mat-icon-button matTooltip="Click to Details" class="iconbutton" color="primary" (click)="orderDetail(row.key)">
+                <mat-icon aria-label="Info" >info</mat-icon>
+              </button> 
+            </td>
+          </ng-container>
+      
+         
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+        </table>-->
+      </div>
+
+      <h3 *ngIf="(Orders !=0) && !isLoading" class="h3 text-center text-info">Orders</h3>
+      <h3 *ngIf="(Orders === 0) && !isLoading " class="h3 text-center text-danger" >You have No-Orders</h3>
+      <div>
+        <div class="container table-responsive z-depth-2">
+          
+          <div class="row" >
+            <table mdbTable #tableEl="mdbTable" [stickyHeader]="true" [hover]="true"  class=" ">
+              <thead class="sticky-top">
+              <tr>
+                <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements"
+                    [sortBy]="headElements[i]"
+                    scope="col">{{head | titlecase}}
+                  <mdb-icon fas icon="sort"></mdb-icon>
+                </th>
+              </tr>
+              </thead>
+              <tbody #row>
+              <tr *ngFor="let el of elements | dateSort:['dateCreated','des']; let i = index">
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                  style="width: 15%;" >{{el.dateCreated | date}}
+                </td>
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  {{el.key}}
+                </td>
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  {{el.status}}
+                </td>
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  {{el.trackingid}}
+                </td>
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  {{el.courier}}
+                </td>
+                <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  <button mat-icon-button matTooltip="Click to Details" class="iconbutton" color="primary" (click)="orderDetail(el.key)">
+                    <mat-icon aria-label="Info" >info</mat-icon>
+                  </button> 
+                </td>
+              </tr>          
+    
+              </tbody>
+              
+             
+              <tfoot class="grey lighten-5 w-100">
+              <tr>
+                <td colspan="5">
+                  <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                        [searchDataSource]="elements"></mdb-table-pagination>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    
+    <div class="container" id="info">
+        <div class="row" >
+          
+            <div class="col-sm-4" *ngFor="let order of userOrder ">
+              <mdb-card class="z-depth-2">
+                <!--Card image-->
+                <mdb-card-img class="zoom overly" [src]="order.urlImage1" alt="Card image cap"></mdb-card-img>
+                <!--Card content-->
+                <mdb-card-body>
+                  <mdb-card-title> <h4>{{order.title}}</h4> </mdb-card-title>
+                  <mdb-card-text> <span>Size:</span>{{order.pdtdimensions}} </mdb-card-text>
+                  <mdb-card-text> {{order.price | currency:"INR"}} </mdb-card-text>
+                </mdb-card-body>
+              </mdb-card>
+            </div>
+            <div class="col-lg-6" *ngFor="let add of  userAddress">
+                <h1 class="text-warning">Address</h1>
+              <p ><span>Name:</span> {{add.fullname}} </p>
+              <p><span>Mobile:</span> {{add.mobile}} </p>
+              <p><span>Address:</span> {{add.addressline1}} <br> {{add.addressline2}} </p>
+              <p><span>State:</span> {{add.state}} </p>
+              <p><span>PinCode:</span> {{add.pinCode}} </p>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div class="container text-center" *ngIf="(Orders === 0) && !isLoading ">
+    
+      <!-- <img src="/assets/Delivery/cart.png" /> -->
+         
+      <br><br>
+      <div>
+           <button type="button" (click)="Products()"
+           mdbBtn type="button" gradient="blue"  mdbWavesEffect> Shop Now</button>
+      </div>
+    </div>

@@ -1,0 +1,10 @@
+h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.container{
+    margin-bottom: 50px;
+}

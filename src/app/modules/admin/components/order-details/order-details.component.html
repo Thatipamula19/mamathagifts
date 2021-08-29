@@ -1,0 +1,129 @@
+
+
+
+
+<div class="container" *ngFor="let one of OneOrder">
+
+    <div class="row">
+        <div class="col-lg-6">
+        <button class="btn btn-info btn-rounded" routerLink="/all-orders">Orders</button>
+            <br><br>
+        <p> <span id="order">OrderId:</span>   {{orderKey}}</p>
+
+        <h2 class="text-warning">Address</h2>
+            <div class="" *ngFor="let address of userAddress">
+                <p><span>Name:</span>  {{address.fullname}}</p>
+                <p><span>Mobile:</span> {{address.mobile}}</p>
+                <p><span>Address:</span>
+                    {{address.addressline1}}<br>
+                     {{address.addressline2}}<br>
+                    {{address.state}}
+                
+                </p>
+                <p><span>Pin Code:</span>{{address.pinCode}}</p>
+                
+            </div>
+        </div>
+        <div class="col-lg-6"  *ngFor="let one of OneOrder">
+            <h3>Update Order</h3>
+           
+            <!--Add Update Order Form-->
+                        <div>
+                        <form [formGroup]="updateOrderForm" (ngSubmit)="AddUpdateOrder(updateOrderForm.value)" >
+                        <div class="pdtControls"  >
+                            <mat-form-field  appearance="outline" >
+                                <mat-label>Order Status</mat-label>
+                                <mat-select formControlName="status" [(ngModel)]="one.status" >
+                                    <mat-option class="text-info" value="InProcessing"> In Processing  </mat-option>
+                                    <mat-option class="text-success" value="Shipped"> Shipped </mat-option>
+                                    <mat-option class="text-secondary" value="Delivered"> Delivered  </mat-option>
+                                    <mat-option class="text-danger" value="Canceled"> Canceled </mat-option>                   
+                                </mat-select>
+                            </mat-form-field>
+                
+                            <mat-form-field appearance="outline">
+                                <mat-label>Tracking Id</mat-label>
+                                <input matInput formControlName="trackingid" [(ngModel)]="one.trackingid">
+                            </mat-form-field>
+            
+                            <mat-form-field  appearance="outline" >
+                                <mat-label>Shipped By</mat-label>
+                                <mat-select formControlName="courier" [(ngModel)]="one.courier">
+                                    <mat-option class="text-info" value="Dhlivery"> Dhlivery </mat-option>
+                                    <mat-option class="text-success" value="E-com"> E-com Express </mat-option>                  
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+            
+            
+                        <!--Submit Button and Clear Button-->
+                        <div class="buttonrow">
+                            <button mdbBtn type="submit" color="indigo" mdbWavesEffect [disabled]="!updateOrderForm.valid" >Submit</button>
+                            <button  mdbBtn type="button" color="deep-orange" mdbWavesEffect (click)="onClear()">Clear</button>
+                        </div>
+                        </form>
+                    </div>   
+        </div>
+    </div>
+    
+    
+
+    <div class="row" >
+        <div class="col-lg-4" *ngFor="let od of Order">
+            <mdb-card class="z-depth-2">
+                <!--Card image-->
+                <mdb-card-img class="zoom overly" [src]="od.urlImage1" alt="Card image cap"></mdb-card-img>
+                <!--Card content-->
+                <mdb-card-body>
+                  <mdb-card-title> <h4>{{od.title}}</h4> </mdb-card-title>
+                  <mdb-card-text> {{od.price | currency:"INR"}} </mdb-card-text>
+                </mdb-card-body>
+              </mdb-card>
+        </div>
+    </div>
+   
+
+</div>
+<!--Update Order Form
+   
+    <button (click)="UpdateOrder(orderKey)" >Update Order</button>
+
+    <div>
+        <form [formGroup]="updateOrderForm" (ngSubmit)="AddUpdateOrder(updateOrderForm.value)">
+        <div class="pdtControls" *ngFor="let one of OneOrder" >
+            <mat-form-field  appearance="outline" >
+                <mat-label>Order Status</mat-label>
+                <mat-select formControlName="status" [(ngModel)]="one.status">
+                    <mat-option class="text-info" value="InProcessing"> In Processing  </mat-option>
+                    <mat-option class="text-success" value="Shipped"> Shipped </mat-option>
+                    <mat-option class="text-secondary" value="Delivered"> Delivered  </mat-option>
+                    <mat-option class="text-danger" value="Canceled"> Canceled </mat-option>                   
+                </mat-select>
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tracking Id</mat-label>
+                <input matInput formControlName="trackingid" [(ngModel)]="one.trackingid">
+                <mat-error>This field is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Shipped By</mat-label>
+                <mat-select formControlName="courier" [(ngModel)]="one.courier">
+                    <mat-option class="text-info" value="Dhlivery" > Dhlivery </mat-option>
+                    <mat-option class="text-success" value="E-com"> E-com Express </mat-option>                  
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+       
+        <div class="buttonrow">
+            <button mat-raised-button [disabled]="!updateOrderForm.valid" color="primary" >Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+    </form>
+    </div>    
+
+-->

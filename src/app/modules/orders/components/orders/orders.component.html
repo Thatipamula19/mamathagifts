@@ -1,0 +1,81 @@
+
+<div class="container-fulid">
+    <h1 class=" text-center text-danger">The Summary Order</h1>
+    <div class="row">
+        <div class="col-lg-6 " *ngFor="let pdt of Product">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple text-center" data-mdb-ripple-color="light">
+                  <img [src]="pdt.urlImage1" class="img-fluid" />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"> {{pdt.title}} </h5>
+                  <p class="card-text"> {{pdt.price | currency:"INR"}} </p>
+                </div>
+            </div>
+              
+        </div>
+        <div class="col-lg-6">
+          <h2 class=" text-center">Address</h2>
+          <div class="row" *ngFor="let add of Address">
+            <div class="col-lg-6">
+              
+          
+                <p><span>Name:</span>
+                <mat-form-field appearance="outline">
+                  <input matInput disabled [value]="add.fullname">
+                </mat-form-field>
+                </p>
+                <p><span>Mobile:</span>
+                  <mat-form-field appearance="outline">
+                    <input matInput disabled [value]="add.mobile">
+                  </mat-form-field>
+                 </p>
+                 <p><span>Email:</span>
+                  <mat-form-field appearance="outline">
+                    <input matInput disabled [value]="add.email">
+                  </mat-form-field>
+                 </p>
+                
+                
+               
+              
+            </div>
+            <div class="col-lg-6">
+              <p><span>Address:</span>
+                <mat-form-field appearance="outline">
+                  <input matInput disabled [value]="add.addressline1">
+                <!-- </mat-form-field>
+                <mat-form-field appearance="outline"> -->
+                  <input matInput disabled *ngIf="add.addressline2" [value]="add.addressline2">
+                </mat-form-field></p>
+                <p><span>PinCode:</span> 
+                  <mat-form-field appearance="outline">
+                    <input matInput disabled [value]="add.pinCode">
+                  </mat-form-field> </p>
+                <p><span>State:</span> 
+                  <mat-form-field appearance="outline">
+                    <input matInput disabled [value]="add.state">
+                  </mat-form-field></p>
+      
+              <button (click)="updateAddress()" 
+              mdbBtn type="button" color="yellow" mdbWavesEffect data-mdb-ripple-color="dark">UpdateAddress </button> 
+            </div>
+          </div>
+        <mat-card class="example-card ">
+            <mat-card-header fxLayoutAlign="end center">
+              <mat-card-title class="card-container-left" *ngFor="let pdt of Product">
+                  Total : {{pdt.price | currency:"INR"}} 
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="space-between end">
+              <button   mdbBtn type="button" gradient="aqua" mdbWavesEffect data-mdb-ripple-color="dark" (click)="PlaceOrder()">Place Order</button>
+              <button   (click)="Cancle()"
+              mdbBtn type="button" color="danger" mdbWavesEffect data-mdb-ripple-color="dark">Cancel</button>      
+            </mat-card-actions>
+        </mat-card>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect" aria-current="page" routerLink="/" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" routerLink="/products">Products</a>
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link waves-effect" routerLink="/about" >About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" routerLink="/contactus" >Contact Us</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a mat-button (click)="recapShopping()"> {{nbrShoppingProduct}}  <i class="material-icons  waves-effect"> add_shopping_cart</i></a>
+          </li> -->
+          <!-- <div class="left">
+            <li class="nav-item">
+              <a class="nav-link waves-effect" *ngIf="!user"  (click)="login()" >Login</a>
+            </li>
+            <li class="nav-item">            
+              <a class="nav-link waves-effect" [matMenuTriggerFor]="Menu" *ngIf="user" >{{user.name}}</a>
+              <mat-menu #Menu="matMenu">
+                  <button mat-menu-item (click)="MyProfile()"  >MyProfile</button>                  
+                  <button mat-menu-item (click)="Orders()" >Orders</button>
+                  <button mat-menu-item *ngIf="user && user.isAdmin" routerLink="/admin-products">Admin Products</button>
+                  <button mat-menu-item *ngIf="user && user.isAdmin" routerLink="/all-orders">All Orders</button>
+                  <button mat-menu-item class="text-danger" (click)="logout()" >LogOut</button>
+              </mat-menu>
+            </li>
+          </div> -->
+        </ul>
+        <li class="nav-item">
+          <a mat-button (click)="recapShopping()"> {{nbrShoppingProduct}}  <i class="material-icons  waves-effect"> add_shopping_cart</i></a>
+        </li>
+        <button type="button" mdbBtn color="warning" class="waves-light"
+        *ngIf="!user"  (click)="login()"  mdbWavesEffect>LogIn </button>
+        <button type="button" mdbBtn color="warning" *ngIf="user" class="waves-light dropdown-toggle dropdown-toggle-split px-3 waves-light"
+        [matMenuTriggerFor]="Menu" mdbWavesEffect mdbDropdownToggle>{{user.name}} </button>
+          <!-- <button type="button" mdbDropdownToggle mdbBtn color="info" class="dropdown-toggle dropdown-toggle-split px-3 waves-light"
+            mdbWavesEffect ></button> -->
+            <mat-menu #Menu="matMenu">
+              <button mat-menu-item (click)="MyProfile()"  >MyProfile</button> 
+              <button mat-menu-item (click)="Orders()" >Orders</button>
+              <button mat-menu-item *ngIf="user && user.isAdmin" routerLink="/admin-products">Admin Products</button>
+              <button mat-menu-item *ngIf="user && user.isAdmin" routerLink="/all-orders">All Orders</button>
+              <button mat-menu-item (click)="logout()" >LogOut</button>
+          </mat-menu>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+  

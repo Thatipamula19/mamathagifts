@@ -1,0 +1,116 @@
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="container-fulid" *ngIf="!isLoading">
+  <h1 class=" text-center text-danger">The Summary Orders</h1>
+<div class="row">
+  <div class="col-lg-6">
+    <table mat-table [dataSource]="productsOrder" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element" style="width: 15%;"> {{element.title}} 
+        <input hidden *ngFor="let st of  getStock(element.key, element.inventory)" />
+        </td>
+      </ng-container>
+  
+  
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="urlImage">
+              <th mat-header-cell *matHeaderCellDef>Image </th>
+              <td mat-cell  *matCellDef="let element" style="width: 10%;align-items: center;">
+                      <img mat-card-image [src]="element.urlImage1"  style="width: 100px;height: 100px;"/>
+              </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price</th>
+          <td mat-cell *matCellDef="let element" style="width: 5%;"> {{element.price | currency:"INR" }} </td>
+        </ng-container>
+   
+  
+    <!--  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>--> 
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+  <div class="col-lg-6">
+    <h2 class=" text-center">Address</h2>
+    <div class="row" *ngFor="let add of Address">
+      <div class="col-lg-6">
+        
+    
+          <p><span>Name:</span>
+          <mat-form-field appearance="outline">
+            <input matInput disabled [value]="add.fullname">
+          </mat-form-field>
+          </p>
+          <p><span>Mobile:</span>
+            <mat-form-field appearance="outline">
+              <input matInput disabled [value]="add.mobile">
+            </mat-form-field>
+           </p>
+           <p><span>Email:</span>
+            <mat-form-field appearance="outline">
+              <input matInput disabled [value]="add.email">
+            </mat-form-field>
+           </p>
+          
+          
+         
+        
+      </div>
+      <div class="col-lg-6">
+        <p><span>Address:</span>
+          <mat-form-field appearance="outline">
+            <input matInput disabled [value]="add.addressline1">
+          <!-- </mat-form-field>
+          <mat-form-field appearance="outline"> -->
+            <input matInput disabled *ngIf="add.addressline2" [value]="add.addressline2">
+          </mat-form-field></p>
+          <p><span>PinCode:</span> 
+            <mat-form-field appearance="outline">
+              <input matInput disabled [value]="add.pinCode">
+            </mat-form-field> </p>
+          <p><span>State:</span> 
+            <mat-form-field appearance="outline">
+              <input matInput disabled [value]="add.state">
+            </mat-form-field></p>
+
+        <button (click)="updateAddress()" 
+        mdbBtn type="button" color="yellow" mdbWavesEffect data-mdb-ripple-color="dark">UpdateAddress </button> 
+      </div>
+    </div>
+    <mat-card class="example-card ">
+      <mat-card-header fxLayoutAlign="end center">
+        <mat-card-title class="card-container-left">Total : {{getTotal() | currency:"INR"}} </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="space-between end" >
+        <button   mdbBtn type="button" gradient="aqua" mdbWavesEffect data-mdb-ripple-color="dark" (click)="placeOrder()">Place Order</button>
+        <button   (click)="OnCancel()"
+        mdbBtn type="button" color="danger" mdbWavesEffect data-mdb-ripple-color="dark">Cancel</button>      
+      </mat-card-actions>
+  </mat-card>
+  </div>
+ 
+</div>
+
+<!-- <div hidden *ngFor="let pdt of productsOrder">
+ <div *ngFor="let pd of getProduct(pdt.key)">
+   <p *ngFor="let st of getStock(pd.inventory, pd.key)"></p>
+ </div>
+</div> -->
+  
+
+
+
+
+
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let reg of userDetails">
+      
+      <mdb-card>        
+        <mdb-card-body>
+          <h3 class="h1 text-info text-center">Personal Information</h3>
+          <!--Text-->
+         <p><span>First Name:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="reg.firstname">
+         </mat-form-field>
+         <p><span>Last Name:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="reg.lastname">
+         </mat-form-field>
+         <p><span>Gender:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="reg.gender">
+         </mat-form-field>
+         <p><span>E-mail:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="reg.email">
+         </mat-form-field>
+         <p><span>Mobile:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="reg.mobile">
+         </mat-form-field>
+         <p>
+         <button mdbBtn type="button" color="pink" (click)="updateReg()" mdbWavesEffect>Upadate</button>
+        </p>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-sm-6" *ngFor="let ad of userAddress">
+       <button *ngIf="!user.address" mdbBtn type="button" color="pink" (click)="updateAddress()" mdbWavesEffect>Add Address</button>
+      <mdb-card *ngIf="user.address">        
+        <mdb-card-body> 
+          <h3 class="h1 text-info text-center">Address</h3>
+          <div class="row">
+            <div class="col-lg-6">
+              <p><span>Name:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="ad.fullname">
+         </mat-form-field>
+         <p><span>Mobile:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="ad.mobile">
+         </mat-form-field>
+         <p><span>E-mail:</span></p>
+         <mat-form-field appearance="outline">
+          <input matInput disabled [value]="ad.email">
+         </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <p><span>Address:</span></p>
+              <mat-form-field appearance="outline">
+               <input matInput disabled [value]="ad.addressline1">
+              <!-- </mat-form-field><br>
+              <mat-form-field appearance="outline"> -->
+               <input matInput disabled *ngIf="ad.addressline2" [value]="ad.addressline2">
+              </mat-form-field>
+              <p><span>PinCode:</span></p>
+              <mat-form-field appearance="outline">
+               <input matInput disabled [value]="ad.pinCode">
+              </mat-form-field>
+              <p><span>State:</span> </p>
+              <mat-form-field appearance="outline">
+               <input matInput disabled [value]="ad.state">
+              </mat-form-field>
+            </div>
+          </div>     
+         <p>
+         <button mdbBtn type="button" color="pink" (click)="updateAddress()" mdbWavesEffect>Update</button>
+        </p>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>
